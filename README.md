@@ -25,18 +25,16 @@ https://code.google.com/p/digital-assets-managed-neatly/
 Installation
 -----
 
-####Installation
-
- * Install Node.js
+ Install Node.js
  '''
 	$ sudo apt-add-repository ppa:chris-lea/node.js
 	$ sudo apt-get update && sudo apt-get install nodejs
  '''
- * Install yeoman **npm install -g yeoman**
+ Install yeoman **npm install -g yeoman**
  '''
 	$ npm install -g yeoman
  '''
- * Install ruby-compass
+ Install ruby-compass
  '''
 	$ sudo apt-get install ruby-compass
  '''
