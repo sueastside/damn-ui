@@ -1,0 +1,12 @@
+{
+  "name": "damn",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.10.2",
+    "react": "latest",
+  	"normalize-css": "latest",
+    "font-awesome": "latest"
+  },
+  "devDependencies": {}
+}
