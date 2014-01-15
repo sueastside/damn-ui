@@ -28,7 +28,6 @@ Installation
 ####Installation
 
  * Install Node.js
- * Install yeoman
-	npm install -g yeoman
+ * Install yeoman **npm install -g yeoman**
  * Install ruby-compass
  * Start development server with **grunt serve**
