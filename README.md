@@ -20,3 +20,15 @@ DAMN has now been split up in several modules:
 
 ####The old Repository
 https://code.google.com/p/digital-assets-managed-neatly/
+
+
+Installation
+-----
+
+####Installation
+
+ * Install Node.js
+ * Install yeoman
+	npm install -g yeoman
+ * Install ruby-compass
+ * Start development server with **grunt serve**
