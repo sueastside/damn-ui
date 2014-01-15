@@ -38,13 +38,13 @@ Installation
  ```
 	$ sudo apt-get install ruby-compass
  ```
- * Get the DAMN code
+ Get the DAMN code
  ```
 	$ mkdir damn
 	$ cd damn
 	$ git clone git@github.com:sueastside/damn.git .
  ```
- * Start development server
+ Start development server
  ```
 	$ grunt server
  ```
