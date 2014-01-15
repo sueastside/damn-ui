@@ -30,7 +30,7 @@ Installation
 	$ sudo apt-add-repository ppa:chris-lea/node.js
 	$ sudo apt-get update && sudo apt-get install nodejs
  ```
- Install yeoman **npm install -g yeoman**
+ Install yeoman
  ```
 	$ npm install -g yeoman
  ```

@@ -33,6 +33,14 @@ a {
 			background: #444444;
 		}
 
+		&.logo {
+			margin-right: 20px;
+			a {
+				font-size: 0;
+				padding: 0;
+			}
+		}
+
 		&.user_button {
 			a {
 				height: 40px;
