@@ -36,10 +36,10 @@
 						<a href="#"><img src="/images/logo32x32.png"></a>
 					</li>
 					<li class="active">
-						<a href="#"><i class="fa fa-pagelines"></i> App 1</a>
+						<a href="#!dashboard"><i class="fa fa-pagelines"></i> Dashboard</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-bullhorn"></i> App 1</a>
+						<a href="#!users"><i class="fa fa-bullhorn"></i> Users</a>
 					</li>
 					<li>
 						<a href="#"><i class="fa fa-desktop"></i> App 1</a>
@@ -63,12 +63,20 @@
 		</div>
 		<div id="workspace">
 			<div id="workspace-menu">
-				<ul>
-					<li><a href="#">Action 1</a></li>
-					<li><a href="#">Action 2</a></li>
-					<li><a href="#">Action 3</a></li>
-					<li><a href="#">Action 4</a></li>
-				</ul>
+				<div class="dashboard">
+					<ul>
+						<li><a href="#!dashboard;tasks">My tasks</a></li>
+						<li><a href="#!dashboard;projects">Projects</a></li>
+					</ul>
+				</div>
+
+				<div class="users">
+					<ul>
+						<li><a href="#!users;userlist">Userlist</a></li>
+						<li><a href="#!users;projects">Projects</a></li>
+						<li><a href="#!users;groups">Groups</a></li>
+					</ul>
+				</div>
 			</div>
 			<div id="workspace-area">
 				
@@ -95,6 +103,8 @@
 		</script>
 
 		<!-- build:js scripts/main.js -->
+		<script src="scripts/classes/api.js"></script>
+		<script type="text/jsx" src="scripts/dashboard.js"></script>
 		<script src="scripts/main.js"></script>
 		<!-- endbuild -->
 </body>
