@@ -1,0 +1,185 @@
+body {
+	background: #444444;
+	font-family: "Roboto", sans-serif, Helvetica, Arial;
+	color: #aaaaaa;
+	font-size: 14px;
+}
+
+a {
+	color: #cccccc;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+//#Header space
+#header {
+	background: #222222;
+	padding: 0 20px;
+	border-bottom: 5px solid #333333;
+}
+#menu, #user {
+	list-style-type: none;
+	display: inline-block;
+	padding: 0; margin: 0;
+	font-size: 0;
+
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		
+		&.active {
+			a {
+				background: #333333;
+			}
+		}
+
+		&.logo {
+			margin-right: 20px;
+			a {
+				font-size: 0;
+				padding: 0;
+			}
+		}
+
+		&.user_button {
+			a {
+				height: 40px;
+				padding: 4px 5px;
+
+				span {
+					position: relative;
+					bottom: 10px;
+				}
+				img {
+					margin-left: 5px;
+				}
+			}
+		}
+
+		a {
+			font-size: 15px;
+			display: block;
+			padding: 10px 10px;
+
+			transition: background .1s ease-in-out;
+			-moz-transition: background .1s ease-in-out;
+			-webkit-transition: background .1s ease-in-out;
+
+			text-decoration: none;
+
+			&:hover {
+				background: #434343;
+			}
+		}
+	}
+}
+
+#user {
+	float: right;
+}
+
+
+//#Workspace space
+
+#workspace {
+	position: relative;
+	height: 100%;
+}
+
+#workspace-menu {
+	position: absolute;
+	left: 0; top: 0;
+	width: 200px;
+	height: 100%;
+
+	background: #111111;
+	border-right: 5px solid #333333;
+	
+	> div {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+	
+	ul {
+		list-style-type: none;
+		margin: 0; padding: 0;
+
+		li {
+			border-bottom: 2px solid #333333;
+
+			&.active {
+				a {
+					position: relative;
+					background: #333333;
+
+					&:after {
+						content: " ";
+						display: block;
+						position: absolute;
+						right: -15px;
+						top: 50%;
+						margin-top: -15px;
+
+						border-left: 10px solid #333333;
+						border-top: 15px solid transparent;
+						border-bottom: 15px solid transparent;
+					}
+				}
+			}
+
+			a {
+				display: block;
+				width: 195px;
+				padding: 10px;
+				text-decoration: none;
+				
+
+				background: #242424; /* Old browsers */
+				
+				transition: background .1s ease-in-out;
+				-moz-transition: background .1s ease-in-out;
+				-webkit-transition: background .1s ease-in-out;
+
+				&:hover {
+					background: #181818;
+				}
+
+				&:active {
+					background: #241919;
+				}
+			}
+		}
+	}
+}
+
+#workspace-area {
+	padding-left: 200px;
+	
+	> div {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	.workspace-list {
+		list-style-type: none;
+		background: #222222;
+		width: 40%;
+		margin: 0;
+		padding: 0;
+
+		li {
+			h3 {
+				margin: 0;
+			}
+		}
+	}
+}
