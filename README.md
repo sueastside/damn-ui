@@ -48,6 +48,10 @@ Installation
 	$ cd damn
 	$ git clone git@github.com:sueastside/damn.git .
  ```
+ Install dependencies
+ ```
+ npm install
+ ```
  Start development server
  ```
 	$ grunt server
