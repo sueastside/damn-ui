@@ -38,9 +38,9 @@ Installation
  ```
 	$ sudo npm install -g grunt-cli
  ```
- Install ruby-compass
+ Install compass
  ```
-	$ sudo apt-get install ruby-compass
+	$ sudo gem install compass --version "=0.12.2"
  ```
  Get the DAMN code
  ```
@@ -54,5 +54,5 @@ Installation
  ```
  Start development server
  ```
-	$ grunt server
+	$ grunt serve
  ```
