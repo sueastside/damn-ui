@@ -32,7 +32,11 @@ Installation
  ```
  Install yeoman
  ```
-	$ npm install -g yeoman
+	$ sudo npm install -g yeoman
+ ```
+ Install grunt
+ ```
+	$ sudo npm install -g grunt-cli
  ```
  Install ruby-compass
  ```
