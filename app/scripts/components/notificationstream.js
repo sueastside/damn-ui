@@ -1,9 +1,5 @@
 /** @jsx React.DOM */
 
-/*
-    This will be used as a reference module.
-*/
-
 (function() {
     "use strict";
 
