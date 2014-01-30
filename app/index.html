@@ -12,6 +12,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -19,7 +20,6 @@
         <!-- endbuild -->
         <script src="bower_components/modernizr/modernizr.js"></script>
 
-        <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100,100italic|Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
 
@@ -90,7 +90,6 @@
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/react/react.js"></script>
-        <script src="bower_components/react/JSXTransformer.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -106,10 +105,10 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/classes/api.js"></script>
-        <script type="text/jsx" src="scripts/components/filteredlist.js"></script>
-        <script type="text/jsx" src="scripts/components/notificationstream.js"></script>
-        <script type="text/jsx" src="scripts/components/usermenu.js"></script>
-        <script type="text/js" src="scripts/dashboard.js"></script>
+        <script src="scripts/build/filteredlist.js"></script>
+        <script src="scripts/build/notificationstream.js"></script>
+        <script src="scripts/build/usermenu.js"></script>
+        <script src="scripts/build/dashboard.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

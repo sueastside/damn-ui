@@ -8,9 +8,6 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
-    grunt.loadNpmTasks('grunt-jsx');
-
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
@@ -107,13 +104,18 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'scripts/jsx/',
-                        src: ["**/*.jsx"],
-                        dest: "scripts/",
+                        cwd: '<%= yeoman.app %>/scripts/components',
+                        src: ['**/*.jsx'],
+                        dest: '<%= yeoman.app %>/scripts/build',
                         ext: '.js'
                     }
                 ]
-            }
+            },
+            single_file_output: {
+                files: {
+                    'scripts/jsx/dashboard.jsx': 'scripts/dashboard.js'
+                }
+            },
         },
 
         // Empties folders to start fresh
