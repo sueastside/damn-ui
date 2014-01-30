@@ -1,17 +1,17 @@
 (function() {
-	"use strict";
+	'use strict';
 	var currentView = false;
 
 	var workspace = {
 		init: function() {
-			var workspace_height = $(window).height() - $("#menu").height();
-			$("body").css("height", workspace_height);
-			$("#workspace").css("height", workspace_height);
+			var workspaceHeight = $(window).height() - $('#menu').height();
+			$('body').css('height', workspaceHeight);
+			$('#workspace').css('height', workspaceHeight);
 		}
 	};
 
 	$(function() {
-		$(window).on("resize", function() {
+		$(window).on('resize', function() {
 			workspace.init();
 		});
 
@@ -19,36 +19,36 @@
 	});
 
 
-	var LoadView = function(view, viewName, state) {
+	function LoadView(view, viewName, state) {
 		if ( currentView ) {
-			$("#workspace-menu > div").removeClass("active");
-			$("#workspace-area > div").removeClass("active");
+			$('#workspace-menu > div').removeClass('active');
+			$('#workspace-area > div').removeClass('active');
 		}
 
-		$("#workspace-menu > div." + viewName).addClass("active");
-		$("workspace-area > div." + viewName).addClass("active");
+		$('#workspace-menu > div.' + viewName).addClass('active');
+		$('workspace-area > div.' + viewName).addClass('active');
 
 		/*
 			Setting up menu and submenu highlights.
 		*/
-		$("#workspace-menu > div." + viewName + " li").removeClass("active");
-		$("#workspace-menu > div." + viewName).find("li a[href='#!" + viewName + ";" + state + "']").parent().addClass("active");
+		$('#workspace-menu > div.' + viewName + ' li').removeClass('active');
+		$('#workspace-menu > div.' + viewName).find('li a[href="#!' + viewName + ';' + state + '"]').parent().addClass('active');
 
-		$("#menu li").removeClass("active");
-		$("#menu li a[href='#!" + viewName + "']").parent().addClass("active");
+		$('#menu li').removeClass('active');
+		$('#menu li a[href="#!' + viewName + '"]').parent().addClass('active');
 
 
 		//Keepin' track of ma state.
 		currentView = viewName;
 	}
 
-	$(window).on("hashchange", function() {
-		var clickedView = window.location.hash.substr(2).split(";")[0];
+	$(window).on('hashchange', function() {
+		var clickedView = window.location.hash.substr(2).split(';')[0];
 		LoadView( window[clickedView.charAt(0).toUpperCase() + clickedView.slice(1)], clickedView, window.location.hash.substr(2).split(";")[1] );
 	});
 
 	if ( window.location.hash ) {
-		var hash = window.location.hash.substr(2).split(";")[0];
+		var hash = window.location.hash.substr(2).split(';')[0];
 		LoadView( window[hash.charAt(0).toUpperCase() + hash.slice(1)], hash, window.location.hash.substr(2).split(";")[1] );
 	}
 } ());

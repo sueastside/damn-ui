@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+    grunt.loadNpmTasks('grunt-jsx');
+
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
@@ -33,6 +35,10 @@ module.exports = function (grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            jsx: {
+                files: ['**/*.jsx'],
+                tasks: ["react:dynamic_mappings"]
             },
             jstest: {
                 files: ['test/spec/{,*/}*.js'],
@@ -94,6 +100,19 @@ module.exports = function (grunt) {
                     base: '<%= yeoman.dist %>',
                     livereload: false
                 }
+            }
+        },
+        react: {
+            dynamic_mappings: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'scripts/jsx/',
+                        src: ["**/*.jsx"],
+                        dest: "scripts/",
+                        ext: '.js'
+                    }
+                ]
             }
         },
 

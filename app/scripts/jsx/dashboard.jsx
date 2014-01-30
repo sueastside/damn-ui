@@ -18,7 +18,7 @@
 				</ul>
 			);
 		}
-	});
+	}); 
 
 	var Task = React.createClass({
 		render: function() {
