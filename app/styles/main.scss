@@ -55,6 +55,8 @@ a {
 				}
 				img {
 					margin-left: 5px;
+                    width: 32px;
+                    height: 32px;
 				}
 			}
 		}
@@ -159,19 +161,24 @@ a {
 }
 
 #workspace-area {
+    height: 100%;
 	padding-left: 200px;
 	
+    
 	> div {
 		display: none;
-
+        height: 100%;
 		&.active {
 			display: block;
 		}
 	}
 
 	.workspace-list {
+        display: inline-block;
+        
 		list-style-type: none;
 		background: #222222;
+        height: 100%;
 		width: 40%;
 		margin: 0;
 		padding: 0;
@@ -182,4 +189,36 @@ a {
 			}
 		}
 	}
+    
+    .workspace-detail {
+        vertical-align: top;
+        display: inline-block;
+        background: #333;
+        height: 100%;
+        width: 60%;
+        padding: 12px;
+    }
+}
+
+.notification {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background: #242424;
+    transition: background .1s ease-in-out;
+    border-bottom: 2px solid #333333;
+    cursor: pointer;
+    
+    &:hover {
+				background: #434343;
+			}
+    
+    .notification-user {
+        img {
+            margin: 5px;
+        }
+        .notification-summary {
+            display: inline-block;
+        }
+    }
 }

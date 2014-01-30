@@ -32,11 +32,15 @@ Installation
  ```
  Install yeoman
  ```
-	$ npm install -g yeoman
+	$ sudo npm install -g yeoman
  ```
- Install ruby-compass
+ Install grunt
  ```
-	$ sudo apt-get install ruby-compass
+	$ sudo npm install -g grunt-cli
+ ```
+ Install compass
+ ```
+	$ sudo gem install compass --version "=0.12.2"
  ```
  Get the DAMN code
  ```
@@ -44,7 +48,11 @@ Installation
 	$ cd damn
 	$ git clone git@github.com:sueastside/damn.git .
  ```
+ Install dependencies
+ ```
+ npm install
+ ```
  Start development server
  ```
-	$ grunt server
+	$ grunt serve
  ```
