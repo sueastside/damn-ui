@@ -51,10 +51,12 @@
     });
 
     $(document).ready(function () {
-        if ( window.location.hash ) {
-            var hash = window.location.hash.substr(2).split(";")[0];
-            LoadView( window[hash.charAt(0).toUpperCase() + hash.slice(1)], hash, window.location.hash.substr(2).split(";")[1] );
-        }
-        setTimeout(function () {window.renderUserMenu();}, 100);
+        setTimeout(function () {
+            if ( window.location.hash ) {
+                var hash = window.location.hash.substr(2).split(";")[0];
+                LoadView( window[hash.charAt(0).toUpperCase() + hash.slice(1)], hash, window.location.hash.substr(2).split(";")[1] );
+            }
+            window.renderUserMenu();
+        }, 100);
     });
 } ());

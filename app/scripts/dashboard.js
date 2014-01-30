@@ -44,7 +44,7 @@
         } else if (state=='projects') {
             React.renderComponent(<FilteredList type={Project} url="/projects/"></FilteredList>, $("#workspace-area")[0]);
         } else {
-            React.renderComponent(<NotificationStream url="/users/1/activity/" pollInterval={2000}></NotificationStream>, $("#workspace-area")[0]);
+            React.renderComponent(<NotificationStream url="/users/1/activity/" pollInterval={5000}></NotificationStream>, $("#workspace-area")[0]);
         }
     };
 } ());
