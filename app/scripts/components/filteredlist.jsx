@@ -99,12 +99,10 @@
                   component.setState(component.state);
               });
         },
-        componentWillMount: function() {
+        loadData: function (url) {
             var component = this;
-            
-            console.log('componentWillMount');
-            var filters = RequestOPTIONS(this.props.url);
-            
+
+            var filters = RequestOPTIONS(url);
             
             filters.done(function( xhr_data ) {
               console.log(xhr_data);
@@ -112,12 +110,20 @@
               component.state.search = xhr_data.search;
               component.state.name = xhr_data.name;
               component.setState(component.state);
-              var data_xhr = Request(component.props.url);
+              var data_xhr = Request(url);
               data_xhr.done(function( data ) {
                   component.state.data = data;
                   component.setState(component.state);
               });
             });
+        },
+        componentWillMount: function() {
+            console.log('componentWillMount');
+            this.loadData(this.props.url);
+        },
+        componentWillReceiveProps: function(nextProps) {
+          console.log('FilteredList::componentWillReceiveProps');
+          this.loadData(nextProps.url);
         },
         handleClick: function(event) {
             var element = $(event.target).parent('li');
@@ -128,7 +134,7 @@
           },
         render: function() {
             return (
-                <div className="workspace-list active">
+                <div key={'FilteredList-'+this.props.url} className="workspace-list active">
                     <h3>{this.state.name}</h3>
                     {this.state.search?<FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>:''}
                     {this.state.ordering?<FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>:''}

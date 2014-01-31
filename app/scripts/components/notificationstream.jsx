@@ -54,7 +54,12 @@
         },
         componentWillMount: function() {
             this.loadFromServer();
-            setInterval(this.loadFromServer, this.props.pollInterval);
+            this.interval = setInterval(this.loadFromServer, this.props.pollInterval);
+        },
+        componentWillUnmount: function() {
+            console.log('NotificationStream::componentWillUnmount');
+            console.log(this.interval);
+            clearInterval(this.interval);
         },
         handleonNavigate: function(data) {
             var component = this;
