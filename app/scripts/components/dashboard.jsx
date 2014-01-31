@@ -6,7 +6,7 @@
 
 (function() {
     "use strict";
-
+    
     /*Define react modules of the module*/
     var Task = React.createClass({
         render: function() {
@@ -19,7 +19,7 @@
             );
         }
     });
-    
+
     var Project = React.createClass({
         render: function() {
             console.log(this.props.data);
@@ -31,6 +31,8 @@
             );
         }
     });
+
+
 
 
     /* Loading class
