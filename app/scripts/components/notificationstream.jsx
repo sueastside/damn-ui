@@ -3,6 +3,16 @@
 (function() {
     "use strict";
     
+    function classSet(classNames) {
+      if (typeof classNames == 'object') {
+        return Object.keys(classNames).map(function(className) {
+          return classNames[className] ? className : '';
+        }).join(' ');
+      } else {
+        return Array.prototype.join.call(arguments, ' ');
+      }
+    }
+        
 
     var ProfilePic = React.createClass({
       render: function() {
@@ -14,15 +24,16 @@
 
 
     var Notification = React.createClass({
-        handleClick: function(event) {
-            console.log(event);
-            var id = $(event.target).attr('data-id');
-            this.props.onClick(this.props.data);
-            return false;
-        },
         render: function() {
-            return (
-                <li className="notification" onClick={this.handleClick} data-id={this.props.data.id}>
+            var cx = classSet;
+              var classes = cx({
+                'notification': true,
+                'notification-active': this.props.selected,
+                'notification-read': this.props.read
+              });
+              
+            return this.transferPropsTo(
+                <li className={classes} data-id={this.props.data.id}>
                     <div className="notification-user">
                         <ProfilePic user={this.props.data.actor} username={this.props.data.actor_descr} />
                         <div className="notification-summary">
@@ -50,7 +61,7 @@
             });
           },
         getInitialState: function() {
-            return {data: [], active: null};
+            return {data: [], read: {}};
         },
         componentWillMount: function() {
             this.loadFromServer();
@@ -66,12 +77,21 @@
             component.state.active = data;
             component.setState(component.state);
         },
+        handleSelected: function(index) {
+            console.log('Selected ');
+            console.log(index);
+            this.state.selected = index;
+            this.state.active = this.state.data[this.state.selected];
+            this.state.read[this.state.selected] = true;
+            this.setState(this.state);
+        },
         render: function() {
             return (
                 <div className="active">
                     <ul className="workspace-list">
-                        {this.state.data.map(function(itm)  {
-                            return <Notification onClick={this.handleonNavigate} key={itm.id} data={itm} />
+                        {this.state.data.map(function(itm, i)  {
+                            var boundClick = this.handleSelected.bind(this, i);
+                            return <Notification onClick={boundClick} key={itm.id} data={itm} selected={this.state.selected === i} read={this.state.read[i]} />
                         }, this)}
                     </ul>
                     <div className="workspace-detail">

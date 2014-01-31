@@ -204,14 +204,22 @@ a {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #242424;
+    background: #343434;
     transition: background .1s ease-in-out;
     border-bottom: 2px solid #333333;
     cursor: pointer;
     
+    &.notification-read {
+        background: #242424;
+    }
+    
+    &.notification-active {
+        background: #535353;
+    }
+    
     &:hover {
-				background: #434343;
-			}
+        background: #434343;
+    }
     
     .notification-user {
         img {
@@ -221,4 +229,6 @@ a {
             display: inline-block;
         }
     }
+    
+
 }
