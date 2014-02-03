@@ -42,9 +42,9 @@
      */
     window.Dashboard = function(state) {
         if (state=='tasks') {
-            React.renderComponent(<FilteredList type={Task} url="/tasks/"></FilteredList>, $("#workspace-area")[0]);
+            React.renderComponent(<FilteredList type={Task} url={window.get_user_url()+"tasks/"}></FilteredList>, $("#workspace-area")[0]);
         } else if (state=='projects') {
-            React.renderComponent(<FilteredList type={Project} url="/projects/"></FilteredList>, $("#workspace-area")[0]);
+            React.renderComponent(<FilteredList type={Project} url={window.get_user_url()+"projects/"}></FilteredList>, $("#workspace-area")[0]);
         } else {
             React.renderComponent(<NotificationStream url="/users/1/activity/" pollInterval={5000}></NotificationStream>, $("#workspace-area")[0]);
         }

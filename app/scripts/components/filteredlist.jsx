@@ -37,7 +37,7 @@
         render: function() {
             return (
                 <ul onClick={this.handleClick}>
-                       {this.props.order.fields.map(function(item)  {
+                       {this.props.order.choices.map(function(item)  {
                             return <li value={item[0]}>{item[1]}</li>
                         })}
                 </ul>
@@ -68,11 +68,11 @@
     /*Define react modules of the module*/
     var FilteredList = React.createClass({
         getInitialState: function() {
-            return {data: {results: []}, ordering: {fields:[]}, search: {}};
+            return {data: {results: []}, ordering: {choices:[]}, search: {}};
         },
         handleonSearch: function(data) {
             var component = this;
-            var url = component.props.url+component.state.search.url + data.text;
+            var url = component.props.url+'?'+component.state.search.search_by_field +'='+ data.text;
             console.log("handleonSearch "+url);
             var data_xhr = Request(url);
               data_xhr.done(function( data ) {
@@ -82,7 +82,7 @@
         },
         handleonOrder: function(data) {
             var component = this;
-            var url = component.props.url+component.state.ordering.url + data.field;
+            var url = component.props.url+'?'+component.state.ordering.order_by_field +'='+ data.field;
             console.log("handleonOrder "+url);
             var data_xhr = Request(url);
               data_xhr.done(function( data ) {
@@ -134,16 +134,18 @@
           },
         render: function() {
             return (
-                <div key={'FilteredList-'+this.props.url} className="workspace-list active">
-                    <h3>{this.state.name}</h3>
-                    {this.state.search?<FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>:''}
-                    {this.state.ordering?<FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>:''}
-                    <FilteredListPaginator data={this.state.data} onNavigate={this.handleonNavigate}></FilteredListPaginator>
-                    <ul onClick={this.handleClick}>
-                       {this.state.data.results.map(function(itm)  {
-                            return this.props.type({data:itm})
-                        }, this)}
-                    </ul>
+                <div className="active">
+                    <div className="workspace-list">
+                        <h3>{this.state.name}</h3>
+                        {this.state.search?<FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>:''}
+                        {this.state.ordering?<FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>:''}
+                        <FilteredListPaginator data={this.state.data} onNavigate={this.handleonNavigate}></FilteredListPaginator>
+                        <ul onClick={this.handleClick}>
+                           {this.state.data.results.map(function(itm)  {
+                                return this.props.type({data:itm})
+                            }, this)}
+                        </ul>
+                    </div>
                 </div>
             );
         }

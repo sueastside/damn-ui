@@ -26,7 +26,7 @@
         }
         if ( currentView ) {
             $("#workspace-menu > div").removeClass("active");
-            $("#workspace-area > div").removeClass("active");
+            //$("#workspace-area > div").removeClass("active");
         }
 
         if ( !state ) state = "index";
@@ -56,12 +56,13 @@
     });
 
     $(document).ready(function () {
-        setTimeout(function () {
-            if ( window.location.hash ) {
-                var hash = window.location.hash.substr(2).split(";")[0];
-                LoadView( window[hash.charAt(0).toUpperCase() + hash.slice(1)], hash, window.location.hash.substr(2).split(";")[1] );
-            }
-            window.renderUserMenu();
-        }, 100);
+        if ( window.location.hash ) {
+            var hash = window.location.hash.substr(2).split(";")[0];
+            LoadView( window[hash.charAt(0).toUpperCase() + hash.slice(1)], hash, window.location.hash.substr(2).split(";")[1] );
+        } else {
+            //LoadView(window['Dashboard'], 'Dashboard');
+            window.location.hash = '!dashboard'
+        }
+        window.renderUserMenu();
     });
 } ());

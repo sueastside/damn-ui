@@ -5,8 +5,10 @@
     
     $.ajaxSetup ({
         cache: false,
-        headers: {'Authorization': 'Token 740a04407a34316403eba0cceaf395a812180c0d'}
+        headers: {'Authorization': 'Token e8401436e22b48f6d7407c4a7ff1323f4102fea8'}
     });
+    
+    var USER_URL;
 
     var UserMenu = React.createClass({
         getInitialState: function() {
@@ -21,11 +23,13 @@
                 component.state.id = data.id;
                 component.state.avatar_src = 'http://placekitten.com/32/32';
                 component.setState(component.state);
+                USER_URL = data.url;
             });
             data_xhr.fail(function () {
                 component.state = component.getInitialState();
                 component.state.username = 'Please login.';
                 component.setState(component.state);
+                USER_URL = null;
             });
         },
         render: function() {
@@ -43,6 +47,10 @@
     
     window.renderUserMenu = function () {
         React.renderComponent(<UserMenu></UserMenu>, $("#user")[0]);
+    };
+    
+    window.get_user_url = function () {
+        return USER_URL;
     };
 
 } ());
