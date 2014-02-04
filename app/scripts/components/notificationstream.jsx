@@ -21,6 +21,7 @@
         );
       }
     });
+    window.ProfilePic = ProfilePic;
 
 
     var Notification = React.createClass({

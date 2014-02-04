@@ -65,41 +65,43 @@
         }
     });
 
-    /*Define react modules of the module*/
+
     var FilteredList = React.createClass({
+        mixins: [SelectableListMixin, AsyncListMixin],
+        propTypes: jQuery.extend({
+            type: React.PropTypes.func.isRequired
+        }, AsyncListMixin.propTypes, SelectableListMixin.propTypes),
         getInitialState: function() {
-            return {data: {results: []}, ordering: {choices:[]}, search: {}};
+            return {ordering: {choices:[]}, search: {}};
+        },
+        processURL: function (url) {
+            console.log('FilteredList::processURL '+this.state.searching);
+            console.log('FilteredList::processURL '+this.state.order_field);
+            var args = '';
+            if (this.state.search.search_by_field && this.state.searching) {
+                args += '&'+this.state.search.search_by_field +'='+ this.state.searching;
+            }
+            if (this.state.ordering.order_by_field && this.state.order_field) {
+                args += '&'+this.state.ordering.order_by_field +'='+ this.state.order_field;
+            }
+            if (this.state.navigate) {
+                return this.state.navigating+'?'+args;
+            }
+            return url+'?'+args;        
         },
         handleonSearch: function(data) {
-            var component = this;
-            var url = component.props.url+'?'+component.state.search.search_by_field +'='+ data.text;
-            console.log("handleonSearch "+url);
-            var data_xhr = Request(url);
-              data_xhr.done(function( data ) {
-                  component.state.data = data;
-                  component.setState(component.state);
-              });
+            this.state.searching = data.text
+            this.loadData(this.props.url);
         },
         handleonOrder: function(data) {
-            var component = this;
-            var url = component.props.url+'?'+component.state.ordering.order_by_field +'='+ data.field;
-            console.log("handleonOrder "+url);
-            var data_xhr = Request(url);
-              data_xhr.done(function( data ) {
-                  component.state.data = data;
-                  component.setState(component.state);
-              });
+            this.state.order_field = data.field
+            this.loadData(this.props.url);
         },
         handleonNavigate: function(data) {
-            console.log('handleonNavigate'+data.url)
-            var component = this;
-            var data_xhr = Request(data.url);
-              data_xhr.done(function( data ) {
-                  component.state.data = data;
-                  component.setState(component.state);
-              });
+            this.state.navigate = data.url;
+            this.loadData(this.props.url);
         },
-        loadData: function (url) {
+        loadOptions: function (url) {
             var component = this;
 
             var filters = RequestOPTIONS(url);
@@ -110,60 +112,35 @@
               component.state.search = xhr_data.search;
               component.state.name = xhr_data.name;
               component.setState(component.state);
-              var data_xhr = Request(url);
-              data_xhr.done(function( data ) {
-                  component.state.data = data;
-                  if (component.state.selected) {
-                      console.log('FilteredList::loadData: '+component.state.selected);
-                      component.state.active = component.state.data.results[component.state.selected];
-                  }
-                  component.setState(component.state);
-              });
             });
         },
         componentWillMount: function() {
-            
-            if (this.props.state) {
-                console.log('FilteredList::componentWillMount: '+this.props.state);
-                this.state.selected = this.props.state[0];
-                console.log('FilteredList::componentWillMount: s '+this.state.selected);
-            }
-            
             var component = this;
-            console.log('FilteredList::componentWillMount: '+this.props.url);
             this.props.url.done(function (url) {
-                console.log('FilteredList::componentWillMount:promise: '+url);
-                component.loadData(url);
+                component.loadOptions(url);
             });
         },
         componentWillReceiveProps: function(nextProps) {
           console.log('FilteredList::componentWillReceiveProps');
           this.loadData(nextProps.url);
         },
-        handleSelected: function(index) {
-            console.log('Selected ');
-            console.log(index);
-            this.state.selected = index;
-            this.state.active = this.state.data.results[this.state.selected];
-            this.setState(this.state);
-        },
         render: function() {
             return (
                 <div className="active">
                     <div className="workspace-list">
                         <h3>{this.state.name}</h3>
-                        {this.state.search?<FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>:''}
-                        {this.state.ordering?<FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>:''}
+                        <FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>
+                        <FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>
                         <FilteredListPaginator data={this.state.data} onNavigate={this.handleonNavigate}></FilteredListPaginator>
                         <ul>
                            {this.state.data.results.map(function(itm, i)  {
                                 var boundClick = this.handleSelected.bind(this, i);
-                                return this.props.type({key:itm.id, data:itm, onClick:boundClick, selected:(this.state.selected === i)});
+                                return this.props.type({key:itm.id, data:itm, onClick:boundClick, selected:(this.state.selected == i)});
                             }, this)}
                         </ul>
                     </div>
                     <div className="workspace-detail">
-                        {this.state.active?this.props.detailtype({data:this.state.active}):''}
+                        {this.state.active?this.props.detailtype({key:this.state.active.id, data:this.state.active, context:this.props.context.slice(1)}):''}
                     </div>
                 </div>
             );

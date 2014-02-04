@@ -184,6 +184,13 @@ a {
 		padding: 0;
 
 		li {
+            cursor: pointer;
+            &.active {
+                background: #535353;
+            }
+            &:hover {
+                background: #434343;
+            }
 			h3 {
 				margin: 0;
 			}
@@ -233,7 +240,10 @@ a {
 
 }
 
-
+.followControl {
+    font-size: 32px;
+    float: right;
+}
 
 
 .tabs-panel {
