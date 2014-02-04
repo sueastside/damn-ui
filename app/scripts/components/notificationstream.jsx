@@ -61,7 +61,7 @@
             });
           },
         getInitialState: function() {
-            return {data: [], read: {}};
+            return {data: {results: []}, read: {}};
         },
         componentWillMount: function() {
             this.loadFromServer();
@@ -81,7 +81,7 @@
             console.log('Selected ');
             console.log(index);
             this.state.selected = index;
-            this.state.active = this.state.data[this.state.selected];
+            this.state.active = this.state.data.results[this.state.selected];
             this.state.read[this.state.selected] = true;
             this.setState(this.state);
         },
@@ -89,7 +89,7 @@
             return (
                 <div className="active">
                     <ul className="workspace-list">
-                        {this.state.data.map(function(itm, i)  {
+                        {this.state.data.results.map(function(itm, i)  {
                             var boundClick = this.handleSelected.bind(this, i);
                             return <Notification onClick={boundClick} key={itm.id} data={itm} selected={this.state.selected === i} read={this.state.read[i]} />
                         }, this)}

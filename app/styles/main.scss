@@ -232,3 +232,25 @@ a {
     
 
 }
+
+
+
+
+.tabs-panel {
+	display: none;
+    margin-top: 1em;
+}
+
+.tabs-panel_selected {
+	display: block;
+}
+
+.tab + .tab {
+	margin-left: .5em;
+}
+
+.tab_selected {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}

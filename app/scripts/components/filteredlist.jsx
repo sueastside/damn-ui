@@ -38,7 +38,7 @@
             return (
                 <ul onClick={this.handleClick}>
                        {this.props.order.choices.map(function(item)  {
-                            return <li value={item[0]}>{item[1]}</li>
+                            return <li key={item[0]} value={item[0]}>{item[1]}</li>
                         })}
                 </ul>
             );
@@ -113,25 +113,40 @@
               var data_xhr = Request(url);
               data_xhr.done(function( data ) {
                   component.state.data = data;
+                  if (component.state.selected) {
+                      console.log('FilteredList::loadData: '+component.state.selected);
+                      component.state.active = component.state.data.results[component.state.selected];
+                  }
                   component.setState(component.state);
               });
             });
         },
         componentWillMount: function() {
-            console.log('componentWillMount');
-            this.loadData(this.props.url);
+            
+            if (this.props.state) {
+                console.log('FilteredList::componentWillMount: '+this.props.state);
+                this.state.selected = this.props.state[0];
+                console.log('FilteredList::componentWillMount: s '+this.state.selected);
+            }
+            
+            var component = this;
+            console.log('FilteredList::componentWillMount: '+this.props.url);
+            this.props.url.done(function (url) {
+                console.log('FilteredList::componentWillMount:promise: '+url);
+                component.loadData(url);
+            });
         },
         componentWillReceiveProps: function(nextProps) {
           console.log('FilteredList::componentWillReceiveProps');
           this.loadData(nextProps.url);
         },
-        handleClick: function(event) {
-            var element = $(event.target).parent('li');
-            console.log(element);
-            var url = element.attr('data-url');
-            console.log('handleClick '+ url); //Todo: Update detail view here.
-            return false;
-          },
+        handleSelected: function(index) {
+            console.log('Selected ');
+            console.log(index);
+            this.state.selected = index;
+            this.state.active = this.state.data.results[this.state.selected];
+            this.setState(this.state);
+        },
         render: function() {
             return (
                 <div className="active">
@@ -140,11 +155,15 @@
                         {this.state.search?<FilteredListSearch search={this.state.search} onSearch={this.handleonSearch}></FilteredListSearch>:''}
                         {this.state.ordering?<FilteredListOrder order={this.state.ordering} onOrder={this.handleonOrder}></FilteredListOrder>:''}
                         <FilteredListPaginator data={this.state.data} onNavigate={this.handleonNavigate}></FilteredListPaginator>
-                        <ul onClick={this.handleClick}>
-                           {this.state.data.results.map(function(itm)  {
-                                return this.props.type({data:itm})
+                        <ul>
+                           {this.state.data.results.map(function(itm, i)  {
+                                var boundClick = this.handleSelected.bind(this, i);
+                                return this.props.type({key:itm.id, data:itm, onClick:boundClick, selected:(this.state.selected === i)});
                             }, this)}
                         </ul>
+                    </div>
+                    <div className="workspace-detail">
+                        {this.state.active?this.props.detailtype({data:this.state.active}):''}
                     </div>
                 </div>
             );
