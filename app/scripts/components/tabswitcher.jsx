@@ -16,13 +16,11 @@
             return {active: this.props.active?this.props.active:0};
         },
         componentWillReceiveProps: function(nextProps) {
-          console.log('TabsSwitcher::componentWillReceiveProps');
-          this.state.active = nextProps.active?nextProps.active:0
+          this.state.active = nextProps.active?nextProps.active:0;
           this.setState(this.state);
         },
         render: function() {
-            console.log('TabsSwitcher::render ', this.state.active);
-            return <div>
+            return <div className="tabsSwitcher">
                 <TabsPane items={this.props.tabs} active={this.state.active} onTabClick={this.handleTabClick}/>
                 <TabsContent items={this.props.tabs} active={this.state.active}/>
             </div>;
@@ -42,7 +40,7 @@
                     {item.title}
                 </a>;
             }.bind(this));
-            return <div>{items}</div>;
+            return <div className="tabsSwitcher-header">{items}</div>;
         },
         onClick: function(index, event) {
             event.preventDefault();
@@ -56,7 +54,7 @@
             var items = this.props.items.map(function(item, index) {
                 return <div key={index} className={'tabs-panel ' + (active == index ? 'tabs-panel_selected' : '')}>{item.content}</div>;
             });
-            return <div>{items}</div>;
+            return <div  className="tabsSwitcher-content">{items}</div>;
         }
     });
 

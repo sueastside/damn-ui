@@ -82,33 +82,57 @@
         }
     });
     
-    var TaskDetail = React.createClass({
+    
+    var ReadOnlyField = React.createClass({
+        propTypes: {
+            name: React.PropTypes.string.isRequired,
+            value: React.PropTypes.string,
+            url: React.PropTypes.string
+        },
         render: function() {
-            console.log(this.props.data);
             return this.transferPropsTo(
-                <div>
+            <div className="field">
+                <div className="name">{this.props.name}</div>
+                <div className="value"><a href={this.props.url}>{this.props.value}</a></div>
+             </div>
+            );
+        }
+    });
+    
+    
+    var TaskDetail = React.createClass({
+        getFields: function () {
+            var fields = {};
+            var component = this;
+            $.map(this.props.data, function(value, key)  {
+                if (key.match(/_descr$/)) {
+                    var name = key.substring(0, key.length-'_descr'.length);
+                    fields[name] = {};
+                    fields[name]['value'] = value;
+                    fields[name]['url'] = component.props.data[name];
+                }
+            }, this);
+            
+            return fields;
+        },
+        render: function() {
+            return this.transferPropsTo(
+                <div className="taskDetail">
                     <h3>{this.props.data.summary}</h3>
                     <FollowControl description={this.props.data.summary} object_url={this.props.data.url} is_following={this.props.data.is_following}/>
+                    
+                    <EditorControl parent={this} object_url={this.props.data.url} />
+                    
                     <div>{this.props.data.description}</div>
-                    <div>{this.props.data.status}</div>
-                    <div>{this.props.data.priority}</div>
-                    <div>{this.props.data.type}</div>
-                    <div>{this.props.data.component.name}</div>
                     
-                    <div>{this.props.data.author}</div>
-                    <div>{this.props.data.owner}</div>
+                    {$.map(this.getFields(),function(value, key)  {
+                        return (<ReadOnlyField key={key} name={key} value={value.value} url={value.url} />);
+                    }.bind(this), this)}
                     
-                    <div>{this.props.data.project}</div>
-                    <div>{this.props.data.milestone}</div>
-                    
-                    <div>{this.props.data.is_following}</div>
-                    
-                    
-                    
-                    <TabsSwitcher active={this.props.context[0]} tabs={[{title:'Comments', content:<CommentBox url={this.props.data.url+'comments/'} pollInterval={5000} />},
+                    <TabsSwitcher active={this.props.context[0]} tabs={[{title:'Comments', content:<CommentBox url={this.props.data.url+'comments/'} pollInterval={60000} />},
                                          {title:'Revisions', content:<List type={Revision} url={this.props.data.url+'revisions/'} />},
                                          {title:'Followers', content:<List type={Follower} url={this.props.data.url+'followers/'} />},
-                                         {title:'Activity', content:<NotificationStream url={this.props.data.url+'activity/'} pollInterval={10000} />} ]}/>
+                                         {title:'Activity', content:<NotificationStream url={this.props.data.url+'activity/'} pollInterval={60000} />} ]}/>
                 </div>
             );
         }
@@ -148,6 +172,8 @@
         console.log('window.Dashboard: name '+name);
         console.log('window.Dashboard: state '+context);
         
+        //React.renderComponent(<Editor url={"/projects/1/tasks/"} />, $("#workspace-area")[0]);
+        //return;
 
         if (name=='tasks') {
             React.renderComponent(<FilteredList context={context} type={Task} detailtype={TaskDetail} url={window.get_user_url_promise("tasks/")}></FilteredList>, $("#workspace-area")[0]);

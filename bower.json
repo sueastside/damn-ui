@@ -6,7 +6,8 @@
     "jquery": "~1.10.2",
     "react": "latest",
   	"normalize-css": "latest",
-    "font-awesome": "latest"
+    "font-awesome": "latest",
+    "chosen": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip"
   },
   "devDependencies": {}
 }
