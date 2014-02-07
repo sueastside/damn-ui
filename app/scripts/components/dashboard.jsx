@@ -153,7 +153,10 @@
         render: function() {
             console.log(this.props.data);
             return this.transferPropsTo(
-                <div>ProjectDetail</div>
+                <div  className="projectDetail">
+                    <h3>{this.props.data.name}</h3>
+                    <FollowControl description={this.props.data.name} object_url={this.props.data.url} is_following={this.props.data.is_following}/>
+                </div>
             );
         }
     });
