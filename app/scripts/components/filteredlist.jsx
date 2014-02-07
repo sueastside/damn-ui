@@ -122,6 +122,10 @@
         },
         componentWillReceiveProps: function(nextProps) {
           console.log('FilteredList::componentWillReceiveProps');
+          var component = this;
+            this.props.url.done(function (url) {
+                component.loadOptions(url);
+            });
           this.loadData(nextProps.url);
         },
         render: function() {
