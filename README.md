@@ -9,7 +9,7 @@ DAMN is more granular than your run-of-the-mill DMS, it tracks 'assets' within '
 
 Contact
 --------
-IRC: irc.freenode.org #peragro
+IRC: irc.freenode.net #peragro
 
 
 DAMN Refactor
