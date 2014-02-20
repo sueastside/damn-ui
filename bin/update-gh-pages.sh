@@ -1,6 +1,10 @@
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo -e "Starting to update gh-pages\n"
-
+  
+  echo "==============================="
+  ls -la
+  echo "==============================="
+  
   #clean and build
   rm -rf dist/
   mkdir dist/
