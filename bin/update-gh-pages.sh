@@ -10,7 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   mkdir dist/
   grunt build
   
-  cd build/
+  cd dist/
   git init
   git config user.name "Travis"
   git config user.email "travis@travis-ci.org"
