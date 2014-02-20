@@ -4,9 +4,11 @@ node_js:
 env: 
   global: 
     secure: CR0RYDzX5o+Jwd7wAE4XES8Gwpk6X9JbRREb7dFhfUgXoW1gLOlRlz5lI9CtXw4ib/XtYvm3gcpJADn63S+X2edVt5loQcB7wH8LhPYfdkhmDm+DUpugq4TZnWjkeYKkOQpu7l65dKCfO9nnXiuzZlJ4jIW7vhh3IPmHLUWUzAw=
-before_script:
+before_install:
+  - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
+install:
   - sudo npm install -g yeoman
-  - npm install -g grunt-cli
+  - sudo npm install -g grunt-cli
   - sudo gem install compass --version "=0.12.2"
   - bower install
 after_script:
