@@ -61,3 +61,7 @@ Installation
  ```
 	$ grunt serve
  ```
+ 
+ http://sueastside.github.io/damn/
+ 
+![Build Status](https://api.travis-ci.org/sueastside/damn.png)
