@@ -9,7 +9,9 @@ before_install:
 install:
   - sudo npm install -g yeoman
   - sudo npm install -g grunt-cli
+  - sudo npm install bower-require
   - sudo gem install compass --version "=0.12.2"
+script:
   - bower install
 after_script:
   - ./bin/update-gh-pages.sh
