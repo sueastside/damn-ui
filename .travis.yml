@@ -9,6 +9,7 @@ before_install:
 install:
   - sudo npm install -g yeoman
   - sudo npm install -g grunt-cli
+  - sudo npm install -g bower
   - sudo gem install sass --version "=3.2.12"
   - sudo gem install compass --version "=0.12.2"
 script:
