@@ -5,6 +5,14 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   ls -la
   echo "==============================="
   
+  echo "==============================="
+  compass
+  which compass
+  echo "PATH: $PATH"
+  echo "==============================="
+  echo "NODE_PATH: $NODE_PATH"
+  echo "==============================="
+  
   #clean and build
   rm -rf dist/
   mkdir dist/
