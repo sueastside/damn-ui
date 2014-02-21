@@ -3,7 +3,7 @@ node_js:
   - "0.10"
 env: 
   global: 
-    secure: NZz0/qP9SB2OSKJBHc7bB43kZyO5Lq29X/gor3Bp/vFKC7rDMMgQFI6OXULAVF7kz65IfMy9+m9pgUsZRCpAVrfulRgmy8O6TCH2/252RlAjhLEpRZGdEmkpBQXq4SnuoWOQpBYM7zKli9HuBmxAFqTPAOkR9jUAUD7UDdxpBI4=
+    secure: ZV8QXsua1d2jxOTIoPliIvvfS2WDCaIZ2sSw+Uz92fE0FwbxIuxGZNCWcpd/ZLB4j/wdorV0kbJTTtTXqeFPDP4BbRqlpsKSbLYCJdqTv3TK2HwBMIDpKwL991J/Oe0xW5MHpoBgKs5glCLCb3wMdjlP28QyicVlphRSAO5iD0s=
 before_install:
   - sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 install:
