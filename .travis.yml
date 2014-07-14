@@ -13,7 +13,7 @@ install:
   - sudo gem install sass --version "=3.2.12"
   - sudo gem install compass --version "=0.12.2"
 script:
-  - sudo npm install
+  - npm install
   - bower install
 after_script:
   - ./bin/update-gh-pages.sh

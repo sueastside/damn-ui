@@ -8,7 +8,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #clean and build
   rm -rf dist/
   mkdir dist/
-  grunt build
+  grunt build --api-server="http://damn.csproject.org:8081"
   
   cd dist/
   git init
