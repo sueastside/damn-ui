@@ -130,7 +130,7 @@
                     }.bind(this), this)}
                     
                     <TabsSwitcher active={this.props.context[0]} tabs={[{title:'Comments', content:<CommentBox url={this.props.data.url+'comments/'} pollInterval={60000} />},
-                                         {title:'Revisions', content:<List type={Revision} url={this.props.data.url+'revisions/'} />},
+                                         {title:'Revisions', content:<List type={Revision} url={this.props.data.url+'revisions/'} pathToId="revision.revision_id" />},
                                          {title:'Followers', content:<List type={Follower} url={this.props.data.url+'followers/'} />},
                                          {title:'Activity', content:<NotificationStream url={this.props.data.url+'activity/'} pollInterval={60000} />} ]}/>
                 </div>
@@ -156,6 +156,7 @@
                 <div  className="projectDetail">
                     <h3>{this.props.data.name}</h3>
                     <FollowControl description={this.props.data.name} object_url={this.props.data.url} is_following={this.props.data.is_following}/>
+                    No further data at this point.
                 </div>
             );
         }

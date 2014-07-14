@@ -28,14 +28,14 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['jshint'],
+                /*tasks: ['jshint'],*/
                 options: {
                     livereload: true
                 }
             },
             jsx: {
                 files: ['**/*.jsx'],
-                tasks: ["react:dynamic_mappings"]
+                tasks: ['react:dynamic_mappings']
             },
             jstest: {
                 files: ['test/spec/{,*/}*.js'],
@@ -141,7 +141,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.jsx',
+                '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
@@ -369,6 +369,19 @@ module.exports = function (grunt) {
             ]
         }
     });
+    
+    grunt.config('options.api', grunt.option('api-server') || 'http://127.0.0.1:8000');
+
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.config('copy.api', {
+        src: '<%= yeoman.app %>/scripts/classes/api.js',
+        dest: '<%= yeoman.app %>/scripts/build/api.js',
+        options: {
+            processContent: function(content, path) {
+                return grunt.template.process(content);
+            }
+        }
+    });
 
 
     grunt.registerTask('serve', function (target) {
@@ -380,6 +393,8 @@ module.exports = function (grunt) {
             'clean:server',
             'concurrent:server',
             'autoprefixer',
+            'react:dynamic_mappings',
+            'copy:api',
             'connect:livereload',
             'watch'
         ]);
@@ -410,6 +425,8 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
+        'react:dynamic_mappings',
+        'copy:api',
         'concat',
         'cssmin',
         'uglify',

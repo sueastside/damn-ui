@@ -43,9 +43,13 @@ Installation
  ```
 	$ sudo npm install -g grunt-cli
  ```
- Install compass
+ Install bower
  ```
-	$ sudo gem install compass --version "=0.12.2"
+	$ sudo npm install -g bower
+ ```
+ Install compass (If you're on ubuntu 12.04 do 'sudo gem install compass --version "=0.12.2"' instead)
+ ```
+	$ sudo gem install compass
  ```
  Get the DAMN code
  ```
@@ -53,13 +57,17 @@ Installation
 	$ cd damn
 	$ git clone git@github.com:sueastside/damn.git .
  ```
+ Install bower modules
+ ```
+ bower install
+ ``
  Install dependencies
  ```
  npm install
  ```
  Start development server
  ```
-	$ grunt serve
+	$ grunt serve --api-server="http://localhost:8000"
  ```
  
  http://sueastside.github.io/damn/

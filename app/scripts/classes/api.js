@@ -1,7 +1,7 @@
 (function() {
 	"use strict";
-    var staticUrl = "http://127.0.0.1:8000";
-	//var staticUrl = "http://damn.csproject.org:8080";
+	
+	var staticUrl = <%= JSON.stringify(options.api) %>;
 
 	var requestCache = {};
 

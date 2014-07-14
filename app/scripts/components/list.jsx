@@ -69,14 +69,16 @@ var AsyncListMixin = {
 var List = React.createClass({
     mixins: [SelectableListMixin, AsyncListMixin],
     propTypes: jQuery.extend({
-        type: React.PropTypes.func.isRequired
+        type: React.PropTypes.func.isRequired,
+        pathToId: React.PropTypes.string,
     }, AsyncListMixin.propTypes, SelectableListMixin.propTypes),
     render: function() {
+        var idPath = this.props.pathToId || 'id';
         return (
                 <ul>
                    {this.state.data.results.map(function(itm, i)  {
                         var boundClick = this.handleSelected.bind(this, i);
-                        return this.props.type({key:itm.id, data:itm, onClick:boundClick, selected:(this.state.selected == i)});
+                        return this.props.type({key:itm[idPath]+'-'+i, data:itm, onClick:boundClick, selected:(this.state.selected == i)});
                     }, this)}
                 </ul>
         );

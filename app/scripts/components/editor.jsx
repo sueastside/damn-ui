@@ -55,7 +55,7 @@ var Field = React.createClass({
 var Editor = React.createClass({
     propTypes: jQuery.extend({
         url: React.PropTypes.string.isRequired,
-        onSuccessfullSave: React.PropTypes.function
+        onSuccessfullSave: React.PropTypes.func
     },{}),
     getInitialState: function() {
         return {data: {actions: {POST: {}} }, errors: {}};

@@ -75,11 +75,11 @@
                                 <form>
                                     <div className="field" name="Login">
                                         <label>Login</label>
-                                        <input ref="login" type="text" value="admin" />
+                                        <input ref="login" type="text" defaultValue="admin" />
                                     </div>
                                     <div className="field" name="Login">
                                         <label>Password</label>
-                                        <input ref="password" type="password" value="admin" />
+                                        <input ref="password" type="password" defaultValue="admin" />
                                     </div>
                                     <button onClick={this.handleLogin} type="submit">Login</button>
                                 </form>
