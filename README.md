@@ -60,7 +60,7 @@ Installation
  Install bower modules
  ```
  bower install
- ``
+ ```
  Install dependencies
  ```
  npm install
