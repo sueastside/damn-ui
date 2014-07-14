@@ -13,6 +13,8 @@
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="bower_components/chosen/chosen.css">
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -20,8 +22,7 @@
         <!-- endbuild -->
         <script src="bower_components/modernizr/modernizr.js"></script>
 
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="bower_components/chosen/chosen.css">
+        
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100,100italic|Roboto+Condensed:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
 
     </head>
@@ -34,7 +35,7 @@
             <nav>
                 <ul id="menu">
                     <li class="logo">
-                        <a href="#"><img src="/images/logo32x32.png"></a>
+                        <a href="#"><img src="images/logo32x32.png"></a>
                     </li>
                     <li class="active">
                         <a href="#!dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
@@ -83,6 +84,19 @@
             </div>
             <div id="workspace-area">
                 
+                <div class="demo statemachine-demo" id="statemachine-demo" style="position: relative; padding: 40px;">
+                    <button type="submit"><i class="fa fa-floppy-o"></i>Add Node</button>
+                    <button type="submit"><i class="fa fa-floppy-o"></i>Add Transition</button>
+                    
+                    <div class="w endpoint" id="create">Create Task<div class="ep"></div></div>
+                    <div class="w" id="open">Open<div class="ep"></div></div>
+                    <div class="w" id="resolved">Resolved<div class="ep"></div></div>
+                    <div class="w" id="inprogress">In Progress<div class="ep"></div></div>  
+                    <div class="w" id="reopened">Reopened<div class="ep"></div></div>     
+                    <div class="w endpoint" id="closed">Closed<div class="ep"></div></div> 
+                  
+                </div>
+                
             </div>
         </div>
 
@@ -90,11 +104,15 @@
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
         <script src="bower_components/jquery-cookie/jquery.cookie.js"></script>
         <script src="bower_components/react/react.js"></script>
         <script src="bower_components/chosen/chosen.jquery.js"></script>
+        <script src="bower_components/jsPlumb/dist/js/jquery.jsPlumb-1.5.5.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+        
+        <script src="http://cpettitt.github.io/project/dagre/latest/dagre.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

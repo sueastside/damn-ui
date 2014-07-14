@@ -4,11 +4,13 @@
   "dependencies": {
     "modernizr": "~2.6.2",
     "jquery": "~1.10.2",
+    "jquery-ui": "~1.10.2",
     "react": "latest",
   	"normalize-css": "latest",
     "font-awesome": "latest",
     "chosen": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
-    "jquery-cookie": "https://github.com/carhartl/jquery-cookie/archive/v1.4.0.zip"
+    "jquery-cookie": "latest",
+    "jsPlumb": "latest"
   },
   "devDependencies": {}
 }
