@@ -70,6 +70,6 @@ Installation
 	$ grunt serve --api-server="http://localhost:8000"
  ```
  
- http://sueastside.github.io/damn/
+ http://sueastside.github.io/damn-ui/
  
-![Build Status](https://api.travis-ci.org/sueastside/damn.png)
+![Build Status](https://api.travis-ci.org/sueastside/damn-ui.png)
